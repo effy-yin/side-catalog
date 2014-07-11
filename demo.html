@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no">
+<title>sideCatalog demo</title>
+<link rel="stylesheet" type="text/css" href="sideCatalog.css">
+<style type="text/css">
+
+* {
+    margin: 0;
+    padding: 0
+}
+#content-wrap {
+    width: 800px;
+    margin: 0 auto;
+    border: 1px solid #e5e5e5;
+}
+#content-wrap:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+}
+#content {
+    background: #eee;
+}
+
+.headline-1 {
+    overflow: hidden;
+}
+.para {
+    text-indent: 2em;
+    height: 100px;
+    margin-top: 10px;
+}
+#side {
+    width: 300px;
+    background: #eec;
+    float: right;
+    position: relative;
+    margin-left: -288px;
+    width: 270px;
+}
+.side-info {
+    height: 520px;
+}
+.col-main {
+    float: left;
+    min-height: 1px;
+    width: 100% !important;
+    width: 520px;
+}
+.col-sub {  
+    float: left;
+    width: 270px;
+}
+#side-catalog-showtag {
+    width: 50px;
+    height: 2px;
+    background: red;
+}
+</style>
+</head>
+<body>
+<div id="content-wrap">
+    <div id="content" class="col-main">
+    </div>
+    <div id="side" class="col-sub">
+        <div class="side-info">
+            右侧内容
+        </div>
+        <!--sideToolbar显示标志-->
+        <div id="side-catalog-showtag"></div>     
+        <div id="sideToolbar">         
+        </div>
+    </div>
+</div>
+    
+
+<script type="text/javascript" src="../jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="sideCatalog.js"></script>
+
+</body>
+</html>
+
