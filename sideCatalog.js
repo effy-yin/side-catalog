@@ -172,31 +172,29 @@
 	                    }
 	            });
 	            e = true;
-        	}
-            
-            //sideToolbar定位 position:fix
-            /*placeToolbar(sideToolbar);*/
+        	}            
+            sideToolbarPosition(sideToolbar);            
         }
     }
-    function setTopLeft(ele, style) {
+    
+    //sideToolbar应为fixed定位，根据页面布局计算fixed定位时的top和left
+    function sideToolbarPosition() {
+        var left = $('#content').offset().left + $("#content").width() - $(document).scrollLeft();
+
+        var windowBottom = $(document).scrollTop() + $(window).height();
+        var contentBottom = $("#content-wrap").offset().top + $("#content-wrap").height();
+        
+        var bottom = (windowBottom <= contentBottom) ? 0 : windowBottom - contentBottom;
+        var top = $(window).height() - bottom - $("#sideToolbar").height() - 10;
+
+        setFixedPosition($("#sideToolbar"), {
+            top: top,
+            left: left
+        });
+    }
+    function setFixedPosition(ele, style) {
         $(ele).css({"position": "fixed", top: style.top, left: style.left});                
     }
-
-    function placeToolbar() {
-        var cata = $("#main-wrap");
-        var cata = $("#content")
-        var O = $.dom.getPosition(cata);
-        var N = cata.offsetWidth - document.body.scrollLeft + O.left;
-        var M = $(window).scrollTop() + $.page.getViewHeight();
-        var P = $.page.getHeight() - M;
-        var i = 219;
-        var I = i < P ? 0 : (P > 0 ? (i - P) : i);
-        setTopLeft(ele, {
-            top: $.page.getViewHeight() - 467 - I,
-            left: N
-        })
-    }
-
 
     function contentLocationByCata(index) {
         var ele = $('[name=' + index + ']');       
@@ -257,7 +255,7 @@ baikeViewInfo.cataList = baikeViewInfo.cataList.concat([
     {"title":"选材","charnum":334,"screennum":0,"level":2,"index":"6_1","display":true,"ele":"6_1","content":"啦啦啦啦"},
     {"title":"烤制","charnum":542,"screennum":0,"level":2,"index":"6_2","display":true,"ele":"6_2","content":"啦啦啦啦"},
     {"title":"制作程序","charnum":3715,"screennum":4,"level":1,"index":7,"display":true,"ele":"7","content":"啦啦啦啦啦"}
-    ]);*/
+]);*/
 
 
 	var baikeViewInfo = {};
@@ -266,10 +264,12 @@ baikeViewInfo.cataList = baikeViewInfo.cataList.concat([
 	    url: 'data.json'
 	}).done(function(json) {
 	    baikeViewInfo = eval(json);
+
 	    //初始化页面内容显示
 	    initContentView(baikeViewInfo);
 	    //初始化目录内容显示
 	    initCatalogView(baikeViewInfo);
+
 	    //事件绑定
 	    $(document).scroll(toolbarHideShow); 
 	    $(document).scroll(cataLocationByContent);

@@ -1,47 +1,45 @@
-
 #sideToolbar {
-	position: fixed;
-	right: 0;
-	bottom: 0px;
-	visibility: hidden;
+    position: fixed;
+    visibility: hidden;
+    height: 310px;
 }
 #sideToolbar-up {
+    display: block;
+    width: 45px;
+    height: 45px;
     background: url("sideToolbar.png") no-repeat scroll -1px -62px transparent;
     border-radius: 2px;
-    display: block;
-    height: 45px;
-    margin-left: 10px;
-    width: 45px;
+    margin-left: 10px;    
 }
 #sideToolbar-up:hover {
     background: url("sideToolbar.png") no-repeat scroll -74px -62px transparent;
 }
-#sideCatalogBtn {
+/*#sideCatalogBtn {
+    display: block;
+    width: 45px;
+    height: 45px;
     background: url("sideToolbar.png") no-repeat scroll 0 0 transparent;
     cursor: pointer;
-    display: block;
-    height: 45px;
-    margin-bottom: 5px;
     margin-left: 10px;
-    position: relative;
-    width: 45px;
+    margin-bottom: 5px;   
+    position: relative;    
 }
 .sideCatalogBtnDisable {
     background: url("sideToolbar.png") no-repeat scroll -104px 0 transparent !important;
 }
-a.sideCatalogBtnDisable:hover {
+.sideCatalogBtnDisable:hover {
     background: url("sideToolbar.png") no-repeat scroll -154px 0 transparent !important;
-}
+}*/
 #sideCatalog {
-    font-family: 宋体;
+    font-family: "宋体";
     font-size: 14px;
+    width: 290px;
     height: 255px;
+    position: relative;
     left: 10px;
     line-height: 19px;
     margin-bottom: 10px;
-    overflow: hidden;
-    position: relative;
-    width: 290px;
+    overflow: hidden;    
 }
 #sideCatalog a {
     color: #333;
@@ -66,59 +64,56 @@ a.sideCatalogBtnDisable:hover {
     padding-right: 5px;
 }
 #sideCatalog #sideCatalog-sidebar {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 0;
+    height: 253px;
     background-color: #eaeaea;
-    border-color: -moz-use-text-color #eaeaea;
-    border-image: none;
     border-left: 1px solid #eaeaea;
     border-right: 1px solid #eaeaea;
-    border-style: none solid;
-    border-width: 0 1px;
-    height: 253px;
-    left: 5px;
-    position: absolute;
-    top: 0;
-    width: 0;
 }
-#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top, #sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-bottom {
-    background: url("sideToolbar.png") no-repeat scroll 0 -199px transparent;
-    height: 10px;
-    left: -5px;
-    overflow: hidden;
-    position: absolute;
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top, 
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-bottom {
     width: 10px;
+    height: 10px;
+    background: url("sideToolbar.png") no-repeat scroll 0 -199px transparent;
+    position: absolute;
+    left: -5px;
+    overflow: hidden; 
+    cursor: pointer;
 }
 #sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top {
-    cursor: pointer;
     top: 0;
 }
-#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top:hover {
-    background-position: 0 -185px;
-}
 #sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-bottom {
-    cursor: pointer;
     bottom: 0;
 }
-.sideCatalog-item1, .sideCatalog-item2 {
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top:hover,
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-bottom:hover {
+    background-position: 0 -185px;
+}
+.sideCatalog-item1, 
+.sideCatalog-item2 {
     margin: 0 0 6px;
     padding: 0 7px;
     position: relative;
 }
-.sideCatalog-item1:hover, .sideCatalog-item2:hover {
-    background: none repeat scroll 0 0 #f5f5f5;
+.sideCatalog-item1:hover, 
+.sideCatalog-item2:hover {
+    background-color: #f5f5f5;
     border-radius: 2px;
     box-shadow: 0 1px 0 #eaeaea;
 }
 .sideCatalog-item2 {
     padding-left: 21px;
 }
-#sideCatalog .sideCatalog-item1 a, #sideCatalog .sideCatalog-item2 a {
+#sideCatalog .sideCatalog-item1 a, 
+#sideCatalog .sideCatalog-item2 a {
     text-decoration: none;
 }
-#sideCatalog .sideCatalog-item1 a:hover, #sideCatalog .sideCatalog-item2 a:hover {
+#sideCatalog .sideCatalog-item1 a:hover, 
+#sideCatalog .sideCatalog-item2 a:hover {
     color: #36c;
 }
 #sideCatalog .sideCatalog-item1 a {
@@ -129,16 +124,14 @@ a.sideCatalogBtnDisable:hover {
     color: #666;
 }
 .sideCatalog-dot {
-    background: url("sideToolbar.png") repeat scroll 0 -222px transparent;
-    cursor: pointer;
-    font-size: 12px;
-    height: 10px;
-    left: -20px;
-    line-height: 12px;
-    overflow: hidden;
-    position: absolute;
-    top: 4px;
     width: 6px;
+    height: 10px;
+    background: url("sideToolbar.png") repeat scroll 0 -222px transparent;
+    position: absolute;
+    left: -20px;
+    top: 4px;
+    cursor: pointer;  
+    overflow: hidden;
 }
 .sideCatalog-dot:hover {
     background-position: 0 -245px;
@@ -148,41 +141,35 @@ a.sideCatalogBtnDisable:hover {
 }
 #sideCatalog-catalog {
     height: 225px;
-    margin-top: 18px;
-    overflow: hidden;
     padding-left: 23px;
+    margin-top: 18px;
+    overflow: hidden;    
     position: relative;
 }
 #sideCatalog-catalog dl {
     position: relative;
 }
 #sideCatalog .highlight span.sideCatalog-dot {
-    background: url("sideToolbar.png") no-repeat scroll -271px -38px transparent;
-    height: 13px;
-    left: -23px;
-    top: 3px;
     width: 18px;
+    height: 13px;
+    background: url("sideToolbar.png") no-repeat scroll -271px -38px transparent;
+    left: -23px;
+    top: 3px;    
 }
-#sideCatalog .sideCatalog-item2 span.sideCatalog-dot {
-}
-#sideCatalog-updown {
-    bottom: 160px;
+#sideCatalog-updown {    
+    width: 22px;
     height: 50px;
     position: absolute;
     right: 60px;
-    width: 22px;
+    bottom: 160px;
     z-index: 100;
     visibility: hidden;
 }
-#sideCatalog-up {
-    cursor: pointer;
-    height: 25px;
+#sideCatalog-up,
+#sideCatalog-down { 
     width: 25px;
-}
-#sideCatalog-down {
-    cursor: pointer;
     height: 25px;
-    width: 25px;
+    cursor: pointer;
 }
 .sideCatalog-up-enable {
     background: url("sideToolbar.png") no-repeat scroll -245px -83px transparent;

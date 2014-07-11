@@ -11,10 +11,16 @@
     margin: 0;
     padding: 0
 }
+body {
+    background: #F5F5F5;
+    margin-top: 100px;
+}
 #content-wrap {
-    width: 800px;
+    width: 1000px;
     margin: 0 auto;
     border: 1px solid #e5e5e5;
+    position: relative;
+    background: #fff;
 }
 #content-wrap:after {
     clear: both;
@@ -22,38 +28,27 @@
     display: block;
     height: 0;
 }
-#content {
-    background: #eee;
-}
-
-.headline-1 {
-    overflow: hidden;
-}
 .para {
     text-indent: 2em;
     height: 100px;
     margin-top: 10px;
 }
-#side {
-    width: 300px;
-    background: #eec;
-    float: right;
-    position: relative;
-    margin-left: -288px;
-    width: 270px;
-}
 .side-info {
     height: 520px;
+    background: #fafafa;
 }
 .col-main {
-    float: left;
-    min-height: 1px;
-    width: 100% !important;
-    width: 520px;
+    float: left;    
+    width: 710px;
+    min-height: 800px;
 }
 .col-sub {  
     float: left;
-    width: 270px;
+    width: 290px;
+}
+#footer {
+    width: 100%;
+    height: 200px;
 }
 #side-catalog-showtag {
     width: 50px;
@@ -68,7 +63,7 @@
     </div>
     <div id="side" class="col-sub">
         <div class="side-info">
-            右侧内容
+            <!--右栏其他内容-->
         </div>
         <!--sideToolbar显示标志-->
         <div id="side-catalog-showtag"></div>     
@@ -76,9 +71,10 @@
         </div>
     </div>
 </div>
+<div id="footer"></div>
     
 
-<script type="text/javascript" src="../jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="sideCatalog.js"></script>
 
 </body>
