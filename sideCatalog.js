@@ -15,7 +15,7 @@
 	            headlineLevel = 'h3',
 	            headlineClass= 'headline-2';
 	        }      
-	        str +=  '<' + headlineLevel + ' name="' + cata.index + '" class="' + headlineClass + '">' +       
+	        str +=  '<' + headlineLevel + ' id="' + cata.index + '" name="' + cata.index + '" class="' + headlineClass + '">' +       
 	                '<span class="headline-1-index">' + cata.index + '</span>' +
 	                '<span class="headline-1-title">' + cata.title + '</span>' +
 	                '</' + headlineLevel +'>';
@@ -56,7 +56,7 @@
 	        }
 	        str +=  '<dd class="'+cataItemClass+'" id="sideToolbar-item-0-'+cata.index+'">'+
 	                '<span class="'+cataIndxClass+'">'+cata.index+'</span>'+
-	                '<a href="#'+cata.index+'" title="'+cata.title+'" onclick="return false;">'+cata.title+'</a>'+
+	                '<a href="#'+cata.index+'" title="'+cata.title+'" onclick="return false;">'+cata.title+'</a>'+ //return false;
 	                '<span class="sideCatalog-dot"></span>'+
 	                '</dd>';
 	    }
@@ -64,10 +64,35 @@
 	}
 
 
-
-	var sideToolbarUpDownInited = false;
+    var catalogVisible = false;
+	var catalogUpDownInited = false;
 	var f = false;
-	var e = false;
+	
+
+    function toolbarHideShow() {
+        if (!sideToolbarReached()) {
+            $("#sideToolbar").fadeOut(100); 
+            catalogVisible = false;      
+            $("#sideToolbar-up").css('visibility', 'hidden'); ///外层fadeOut以后内层还需设置visibility:hidden
+            $("#sideCatalog").css('visibility', 'hidden');
+            
+        } else {        
+            if (!catalogVisible) {
+                if ($("#sideCatalog-catalog dd").length > 0) {                  
+                    $("#sideCatalog").css('visibility', 'visible');
+                }
+                $("#sideToolbar-up").css('visibility', 'visible');
+                $("#sideToolbar").fadeIn(100, function() {
+                    if (!catalogUpDownInited) {
+                            initCatalogUpDown();
+                            catalogUpDownInited = true;
+                        }
+                });
+                catalogVisible = true;
+            }            
+            fixSideToolbarPosition();            
+        }
+    }
 
     //判断当前滚动位置是否显示sideToolbar
     function sideToolbarReached() {
@@ -80,47 +105,20 @@
         }
     }
 
-    function setCatalogUpDown() {
-        f = false;  /////////////////////////////////////////
-      	var catalog = document.getElementById('sideCatalog-catalog');      	
-        if ($(catalog).height() + $(catalog).scrollTop() == catalog.scrollHeight) {
-            document.getElementById('sideCatalog-up').className = "sideCatalog-up-enable";
-            document.getElementById('sideCatalog-down').className = "sideCatalog-down-disable";
-        } else {
-            if ($(catalog).scrollTop() == 0) {
-                document.getElementById('sideCatalog-up').className = "sideCatalog-up-disable";
-                document.getElementById('sideCatalog-down').className = "sideCatalog-down-enable";
-            } else {
-                document.getElementById('sideCatalog-up').className = "sideCatalog-up-enable";
-                document.getElementById('sideCatalog-down').className = "sideCatalog-down-enable";                
-            }
-        }
-    }
-    function scrollElement(ele, dist, dir, dur) {
-        var dur = dur || 0.3;
-        if (!f) {/////////////////////////////////
-            f = true;
-            var top = ("down" === dir) ? ($(ele).scrollTop() + dist) : ($(ele).scrollTop() - dist);
-            $(ele).scrollTop(top);
-            //用动画实现scrollTop 300 easeCout////////////////////
-            setCatalogUpDown();
-        }
-    }
-    
     function initCatalogUpDown() {
-    	var catalog = document.getElementById("sideCatalog-catalog");
-    	//目录内容很长需要滚动显示时 
+        var catalog = document.getElementById("sideCatalog-catalog");
+        //目录内容很长需要滚动显示时 
         if (catalog.scrollHeight > $(catalog).height()) {
 
-			$("#sideCatalog").mouseover(function(e) {
-		        $("#sideCatalog-updown").css('visibility', 'visible');
-			        setCatalogUpDown();
-			        e.stopPropagation()
-			    }).mouseout(function(e) {
-			        $("#sideCatalog-updown").css('visibility', 'hidden');
-			        e.stopPropagation()
-			    });
-		        	
+            $("#sideCatalog").mouseover(function(e) {
+                $("#sideCatalog-updown").css('visibility', 'visible');
+                    setUpDownClass();
+                    e.stopPropagation();
+                }).mouseout(function(e) {
+                    $("#sideCatalog-updown").css('visibility', 'hidden');
+                    e.stopPropagation();
+                });
+                    
 
             $("#sideCatalog-up").click(function() {
                 scrollElement(catalog, 23 * 2, "up"); //23 ???????????
@@ -138,47 +136,49 @@
                 e.stopPropagation();
             });     
             $("#sideCatalog-catalog dl").bind("mousewheel", function(L) {
-					L = L || window.event;
-					if (L.originalEvent.wheelDelta >= 0 || L.originalEvent.detail < 0) {
-						scrollElement(catalog, 23 * 2, "up")
-					} else {
-						scrollElement(catalog, 23 * 2, "down")
-					}
-					L.stopPropagation();
-					L.preventDefault()
-				})  */     
+                    L = L || window.event;
+                    if (L.originalEvent.wheelDelta >= 0 || L.originalEvent.detail < 0) {
+                        scrollElement(catalog, 23 * 2, "up")
+                    } else {
+                        scrollElement(catalog, 23 * 2, "down")
+                    }
+                    L.stopPropagation();
+                    L.preventDefault()
+                })  */     
         } else {
             $("#sideCatalog-updown").remove();
         }     
     }
-    function toolbarHideShow() { 
-        var sideToolbar = $("#sideToolbar");
-        if (!sideToolbarReached()) {
-            sideToolbar.fadeOut(100); 
-            e = false;      
-            $("#sideToolbar-up").css('visibility', 'hidden'); ///为什么外层fadeOut以后内层还需设置visibility:hidden
-            $("#sideCatalog").css('visibility', 'hidden');
-            
-        } else {        
-        	if (!e) {
-	            if ($("#sideCatalog-catalog dd").length > 0) {                  
-	                $("#sideCatalog").css('visibility', 'visible');
-	            }
-	            $("#sideToolbar-up").css('visibility', 'visible');
-	            $("#sideToolbar").fadeIn(100, function() {
-	                if (!sideToolbarUpDownInited) {
-	                        initCatalogUpDown();
-	                        sideToolbarUpDownInited = true;
-	                    }
-	            });
-	            e = true;
-        	}            
-            sideToolbarPosition(sideToolbar);            
+
+    function setUpDownClass() {
+        f = false;  /////////////////////////////////////////
+      	var catalog = document.getElementById('sideCatalog-catalog');      	
+        if ($(catalog).height() + $(catalog).scrollTop() == catalog.scrollHeight) {
+            document.getElementById('sideCatalog-up').className = "sideCatalog-up-enable";
+            document.getElementById('sideCatalog-down').className = "sideCatalog-down-disable";
+        } else {
+            if ($(catalog).scrollTop() == 0) {
+                document.getElementById('sideCatalog-up').className = "sideCatalog-up-disable";
+                document.getElementById('sideCatalog-down').className = "sideCatalog-down-enable";
+            } else {
+                document.getElementById('sideCatalog-up').className = "sideCatalog-up-enable";
+                document.getElementById('sideCatalog-down').className = "sideCatalog-down-enable";                
+            }
         }
     }
-    
+
+    function scrollElement(ele, dist, dir, dur) {
+        var dur = dur || 300;
+        if (!f) {/////////////////////////////////
+            f = true;
+            var top = ("down" === dir) ? ($(ele).scrollTop() + dist) : ($(ele).scrollTop() - dist);
+            $(ele).animate({scrollTop: top}, dur, 'linear');
+            setUpDownClass();
+        }
+    }
+
     //sideToolbar应为fixed定位，根据页面布局计算fixed定位时的top和left
-    function sideToolbarPosition() {
+    function fixSideToolbarPosition() {
         var left = $('#content').offset().left + $("#content").width() - $(document).scrollLeft();
 
         var windowBottom = $(document).scrollTop() + $(window).height();
@@ -192,6 +192,7 @@
             left: left
         });
     }
+
     function setFixedPosition(ele, style) {
         $(ele).css({"position": "fixed", top: style.top, left: style.left});                
     }
@@ -199,8 +200,7 @@
     function contentLocationByCata(index) {
         var ele = $('[name=' + index + ']');       
         var top = ele.offset().top;
-        $(document).scrollTop(top);
-        /*$(document).animate({scrollTop: 'top + 'px''}, 300, 'linear');*///////////////animate实现
+        $('body, html').animate({scrollTop: top}, 300, 'linear');//不能写$('document')???
         window.location.hash = "#" + index;
     }
     function cataLocationByContent() {
@@ -209,9 +209,8 @@
         for (var i = 0, len = cataList.length; i < len; i++) {
             var cata = cataList[i]; 
             var ele = document.getElementsByName(cata.ele)[0];
-            //判断当前滚动位置的内容属于哪条目录
-            if ($(ele).offset().top - 80 <= scrollTop && ((i + 1 == len) || ((i + 1 < len) && 
-                $(document.getElementsByName(cataList[i + 1].ele)[0]).offset().top > scrollTop))) {     
+            //判断当前滚动位置的内容属于哪条目录或子目录
+            if ($(ele).offset().top -80 <= scrollTop && ((i + 1 == len) || ((i + 1 < len) && $(document.getElementsByName(cataList[i + 1].ele)[0]).offset().top > scrollTop))) {     
                 $("#sideCatalog-catalog .highlight").removeClass("highlight");
                 $("#sideCatalog-catalog [href=#" + cata.index + "]").parent().addClass("highlight");
                 //根据sideCatalog当前定位滚动其到合适位置以保证当前选中目录条目在目录中间位置
@@ -220,14 +219,13 @@
                     $("#sideCatalog-catalog").scrollTop((cata.order - 5) * 23)
                 } else {
                     $("#sideCatalog-catalog").scrollTop(0)
-                }               
+                } 
+                //break;    不能加?? 
             }
         }
     }
 
-    
-
-   
+       
 /*var baikeViewInfo ={
     titleInUrl:"北京烤鸭",
     id:"35863",
@@ -281,7 +279,7 @@ baikeViewInfo.cataList = baikeViewInfo.cataList.concat([
 	    })
 	    $("#sideCatalog .sideCatalog-dot").click(function() {
 	        var index = $(this).parent().find("a").attr("href").replace("#", "");
-	        contentLocationByCata(index)
+	        contentLocationByCata(index);
 	    });
 	    
 	    //目录返回顶部
@@ -294,7 +292,7 @@ baikeViewInfo.cataList = baikeViewInfo.cataList.concat([
 	    });
 	    //页面返回顶部按钮
 	    $("#sideToolbar-up").click(function() {
-			$(document).scrollTop(0);    
+            $('body, html').animate({scrollTop: 0}, 300, 'linear');
 		});
 	});
 
