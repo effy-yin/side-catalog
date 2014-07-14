@@ -127,24 +127,31 @@
                 scrollElement(catalog, 23 * 2, "down");
             });
 
-            /*$("#sideCatalog-catalog dl").mousewheel(function(e) {
-                if (e.originalEvent.wheelDelta >= 0 || e.originalEvent.detail < 0) {///////////鼠标滚动事件
+           
+            function handler(e) {
+                var e = e || window.event;
+                console.log(e.wheelDelta);
+                console.log(detail);
+                if(e.wheelDelta >= 0 || e.detail < 0) {
                     scrollElement(catalog, 23 * 2, "up")
                 } else {
                     scrollElement(catalog, 23 * 2, "down")
                 }
                 e.stopPropagation();
-            });     
-            $("#sideCatalog-catalog dl").bind("mousewheel", function(L) {
-                    L = L || window.event;
-                    if (L.originalEvent.wheelDelta >= 0 || L.originalEvent.detail < 0) {
-                        scrollElement(catalog, 23 * 2, "up")
-                    } else {
-                        scrollElement(catalog, 23 * 2, "down")
-                    }
-                    L.stopPropagation();
-                    L.preventDefault()
-                })  */     
+                e.cancelBubble = true;
+                e.preventDefault();
+            }
+            //鼠标滚轮事件在标准下和IE下是有区别的。
+            //firefox是按标准实现的,事件名为"DOMMouseScroll ",IE下采用的则是"mousewheel "。
+            //事件属性，IE是event.wheelDelta，Firefox是event.detail 
+            //属性的方向值也不一样，IE向上滚 > 0，Firefox向下滚 > 0。  有bug
+            if(window.attachEvent) {
+                $("#sideCatalog-catalog dl")[0].attachEvent("onmousewheel", handler);
+            }
+            else if(window.addEventListener) {
+                $("#sideCatalog-catalog dl")[0].addEventListener("DOMMouseScroll", handler, false);                
+            }
+
         } else {
             $("#sideCatalog-updown").remove();
         }     
@@ -295,6 +302,4 @@ baikeViewInfo.cataList = baikeViewInfo.cataList.concat([
             $('body, html').animate({scrollTop: 0}, 300, 'linear');
 		});
 	});
-
-
 })();
