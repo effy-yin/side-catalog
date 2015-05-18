@@ -2,7 +2,9 @@
 百度百科右侧导航目录
 
 包括 side-toolbar.js 和 catalog.js 两个插件。
+
 side-toolbar.js 主要负责 toolbar 的定位。
+
 catalog.js 主要负责内容和目录的定位。
 
 ##Demo
