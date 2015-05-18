@@ -12,20 +12,21 @@ catalog.js 主要负责内容和目录的定位。
 
 ![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo2.png)
 ![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo.png)
+
 ## Usage
-1. Include stylesheet
+1.Include stylesheet.
 ```html
 <link rel="stylesheet" type="text/css" href="side-toolbar.css">
 <link rel="stylesheet" type="text/css" href="catalog.css">
 ```
-2. Include jQuery and side-toolbar.js, catalog.js
+2.Include jQuery and side-toolbar.js, catalog.js.
 
 ```html
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="side-toolbar.js"></script>
 <script type="text/javascript" src="catalog.js"></script>
 ```
-3. Create a HTML tag to hold the toolbar and catalog
+3.Create a HTML tag to hold the toolbar and catalog.
 
 ```html
 <div id="sideToolbar">
