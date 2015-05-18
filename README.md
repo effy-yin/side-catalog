@@ -10,8 +10,8 @@ catalog.js 主要负责内容和目录的定位。
 ##Demo
 *[Demo](http://htmlpreview.github.io/?https://github.com/dodoroy/sideCatalog/blob/master/demo.html)*
 
-![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo2.png)
-![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo.png)
+![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo/demo2.png)
+![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo/demo.png)
 
 ## Usage
 1.Include stylesheet.
