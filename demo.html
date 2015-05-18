@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1.0,user-scalable=no">
 <title>sideCatalog demo</title>
-<link rel="stylesheet" type="text/css" href="sideCatalog.css">
+<link rel="stylesheet" type="text/css" href="side-toolbar.css">
+<link rel="stylesheet" type="text/css" href="catalog.css">
 <style type="text/css">
 
 * {
@@ -30,11 +31,11 @@ body {
 }
 .para {
     text-indent: 2em;
-    height: 100px;
+    height: 150px;
     margin-top: 10px;
 }
 .side-info {
-    height: 520px;
+    height: 480px;
     background: #fafafa;
 }
 .col-main {
@@ -50,7 +51,7 @@ body {
     width: 100%;
     height: 200px;
 }
-#side-catalog-showtag {
+#catalog-showtag {
     width: 50px;
     height: 2px;
     background: red;
@@ -62,22 +63,103 @@ body {
     <div id="content" class="col-main">
         <!--正文部分-->
     </div>
+
     <div id="side" class="col-sub">
         <div class="side-info">
             <!--右栏其他内容-->
         </div>
         <!--sideToolbar显示标志-->
-        <div id="side-catalog-showtag"></div>     
-        <div id="sideToolbar">         
-        </div>
+        <div id="catalog-showtag"></div> 
     </div>
 </div>
+
+
 <div id="footer"></div>
     
+<div id="sideToolbar">
+    <div id="sideCatalog"></div>
+</div>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="sideCatalog.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="side-toolbar.js"></script>
+<script type="text/javascript" src="catalog.js"></script>
+<script type="text/javascript">
 
+    
+    $('#sideToolbar').sideToolbar({width: 220, height: 320, showHeight: 300});
+
+    //获取json数据并填充页面内容
+    $.ajax({
+        url: 'data.json'
+    }).done(function (json) {
+        var baikeViewInfo = eval(json);
+
+        //初始化页面内容显示
+        initContentView(baikeViewInfo);
+
+        $('#sideCatalog').sideCatalog({width: 200, height: 220, content: '#content'});
+
+    });
+
+
+    $(document).scroll(function() {
+        fixSideToolbarPosition();
+    });
+
+    //sideToolbar应为fixed定位，根据页面布局计算fixed定位时的top和left
+    function fixSideToolbarPosition() {
+
+        var windowBottom = $(document).scrollTop() + $(window).height();
+        var contentBottom = $("#content-wrap").offset().top + $("#content-wrap").height();
+        
+        var bottom = (windowBottom <= contentBottom) ? 0 : windowBottom - contentBottom;
+        /*var top = $(window).height() - bottom - $("#sideToolbar").height() - 10;*/
+ 
+        $('#sideToolbar').css({bottom: bottom});
+    }
+
+    //初始化页面内容显示
+    function initContentView(baikeViewInfo) {
+        var html = '',
+            headlineLevel,
+            headlineClass;
+        for (var i = 0, l = baikeViewInfo.cataList.length; i < l; i++) {
+            var cata = baikeViewInfo.cataList[i];
+            if (cata.level == 1) {
+                headlineLevel = 'h2',
+                headlineClass= 'headline-1';
+            } else if (cata.level == 2) {
+                headlineLevel = 'h3',
+                headlineClass= 'headline-2';
+            }      
+            html +=  '<' + headlineLevel + ' id="' + cata.index + '" class="' + headlineClass + '">' + 
+                    '<span class="headline-index">' + cata.index + '</span>' +
+                    '<span class="headline-title">' + cata.title + '</span>' +
+                    '</' + headlineLevel +'>';
+            html += '<div class="para">' + cata.content + '</div>';   
+        }    
+        $('#content').html(html);
+    }
+
+
+/*var baikeViewInfo ={
+    title:"北京烤鸭",
+    cataList:[]
+};
+baikeViewInfo.cataList = [
+    {"title":"历史缘由","level":1,"index":1,"content":"啦啦啦啦啦"},
+    {"title":"流派分类","level":1,"index":2,"content":"啦啦啦啦啦"},
+    {"title":"三大美味","level":1,"index":3,"content":"啦啦啦啦啦"},
+    {"title":"全聚德","level":2,"index":"3_1","content":"啦啦啦啦啦"},
+    {"title":"便宜坊","level":2,"index":"3_2","content":"啦啦啦啦啦"},
+    {"title":"大董","level":2,"index":"3_3","content":"啦啦啦啦啦"},
+    {"title":"吃法三则","level":1,"index":4,"content":"啦啦啦啦啦"},
+    {"title":"烹制方法","level":1,"index":5,"content":"啦啦啦啦啦"},
+    {"title":"传统做法","level":1,"index":6,"content":"啦啦啦啦啦"},
+    {"title":"选材","level":2,"index":"6_1","content":"啦啦啦啦啦"},
+    {"title":"烤制","level":2,"index":"6_2","content":"啦啦啦啦啦"},
+    {"title":"制作程序","level":1,"index":7,"content":"啦啦啦啦啦"}
+];*/
+</script>
 </body>
 </html>
-
