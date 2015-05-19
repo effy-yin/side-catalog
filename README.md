@@ -24,7 +24,7 @@ catalog.js 主要负责内容和目录的定位。
 ```html
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="side-toolbar.js"></script>
-<script type="text/javascript" src="catalog.js"></script>
+<script type="text/javascript" src="side-catalog.js"></script>
 ```
 3.Create a HTML tag to hold the toolbar and catalog.
 
