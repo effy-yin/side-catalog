@@ -33,8 +33,11 @@ catalog.js 主要负责内容和目录的定位。
     <div id="sideCatalog"></div>
 </div>
 ```
-
-
+4.Create toolbar and catalog.
+```javascript
+$('#sideToolbar').sideToolbar({width: 220, height: 320, showHeight: 300});
+$('#sideCatalog').sideCatalog({width: 200, height: 220, content: '#content'});
+```
 
 ## Credit
 Created by [@dodo糯](http://weibo.com/dodoroy), *[blog](http://effy.me)*
