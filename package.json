@@ -1,10 +1,11 @@
 {
   "name": "side-catalog",
-  "version": "1.0.0",
-  "description": "百度百科右下角导航插件",
+  "version": "1.1.0",
+  "description": "导航插件",
   "main": "side-catalog.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compress": "uglifyjs src/side-toolbar.js src/side-catalog.js -o dist/side-catalog.min.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,5 @@
   "bugs": {
     "url": "https://github.com/dodoroy/side-catalog/issues"
   },
-  "homepage": "https://github.com/dodoroy/side-catalog#readme",
-  "devDependencies": {
-    "uglify-js": "^3.4.0"
-  }
+  "homepage": "https://github.com/dodoroy/side-catalog#readme"
 }

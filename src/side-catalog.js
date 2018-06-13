@@ -159,7 +159,7 @@
 
             // 目录内容很长需要滚动显示时 
             // 如果不放在setTimeout里dl的height取值总为0 why？？？        
-            setTimeout(() => {
+            setTimeout(function() {
                var listHeight = $('#catalog').find('dl').height();
                if (listHeight > $('#catalog').height()) {
                     $('#sideCatalog').mouseover(function(e) {
