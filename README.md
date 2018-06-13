@@ -1,25 +1,25 @@
 ## About
 百度百科右侧导航目录
 
-包括 side-toolbar.js 和 catalog.js 两个插件。
+包括 side-toolbar.js 和 side-catalog.js 两个插件。
 
 side-toolbar.js 主要负责 toolbar 的定位。
 
-catalog.js 主要负责内容和目录的定位。
+side-catalog.js 主要负责内容和目录的定位。
 
 ##Demo
 *[Demo](http://htmlpreview.github.io/?https://github.com/dodoroy/sideCatalog/blob/master/demo.html)*
 
-![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo/demo2.png)
-![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo/demo.png)
+![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo/img1.png)
+![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo/img2.png)
 
 ## Usage
 1.Include stylesheet.
 ```html
 <link rel="stylesheet" type="text/css" href="side-toolbar.css">
-<link rel="stylesheet" type="text/css" href="catalog.css">
+<link rel="stylesheet" type="text/css" href="side-catalog.css">
 ```
-2.Include jQuery and side-toolbar.js, catalog.js.
+2.Include jQuery and side-toolbar.js, side-catalog.js.
 
 ```html
 <script type="text/javascript" src="jquery.min.js"></script>
