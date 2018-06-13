@@ -8,7 +8,7 @@ side-toolbar.js 主要负责 toolbar 的定位。
 side-catalog.js 主要负责内容和目录的定位。
 
 ##Demo
-*[Demo](http://htmlpreview.github.io/?https://github.com/dodoroy/sideCatalog/blob/master/demo.html)*
+*[Demo](http://htmlpreview.github.io/?https://github.com/dodoroy/side-catalog/blob/master/demo/demo.html)*
 
 ![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo/img1.png)
 ![screen](https://raw.github.com/dodoroy/sideCatalog/master/demo/img2.png)
