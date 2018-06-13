@@ -1,0 +1,29 @@
+#sideToolbar {
+    position: fixed;
+    padding: 10px;
+    background: #fff;
+}
+#sideToolbar-btn, #sideToolbar-up {
+    float: left;
+    display: block;
+    width: 45px;
+    height: 45px;
+    background: url("sideToolbar.png") no-repeat scroll transparent;
+}
+#sideToolbar-btn {
+    background-position:0 0;
+}
+#sideToolbar-btn.disable {
+    background-position: -104px 0;
+}
+#sideToolbar-btn.disable:hover {
+    background-position: -154px 0;
+}
+#sideToolbar-up {  
+    margin-left: 4px;  
+    border-radius: 2px;
+    background-position: -1px -62px;    
+}
+#sideToolbar-up:hover {
+    background-position: -74px -62px;
+}

@@ -43,18 +43,18 @@
 		},
 
 		bindEvents: function() {
-			var context = this;
+			var _this = this;
 
 			$(document).scroll(function() {
-				if ($(document).scrollTop() > context.settings.showHeight) {
-					if (context.isVisible == false) {
-						context.isVisible = true;
-						context.show();
+				if ($(document).scrollTop() > _this.settings.showHeight) {
+					if (_this.isVisible == false) {
+						_this.isVisible = true;
+						_this.show();
 					}					
 				} else {
-					if (context.isVisible == true) {
-						context.isVisible = false;
-						context.hide();
+					if (_this.isVisible == true) {
+						_this.isVisible = false;
+						_this.hide();
 					}
 				}				
 			});
@@ -65,10 +65,10 @@
 			$('#sideToolbar-btn').click(function() {
 				if ($(this).hasClass('disable')) {
 					$(this).removeClass('disable');
-					context.$wrapper.find(':first-child').css({visibility: 'visible'});
+					_this.$wrapper.find(':first-child').css({visibility: 'visible'});
 				} else {
 					$(this).addClass('disable');
-					context.$wrapper.find(':first-child').css({visibility: 'hidden'});
+					_this.$wrapper.find(':first-child').css({visibility: 'hidden'});
 				}
 			});
 
@@ -77,12 +77,12 @@
 				// $(document).scrollTop() 可以
 				$('body, html').animate({
 					scrollTop: 0
-				}, context.settings.speed, 'linear');
+				}, _this.settings.speed, 'linear');
 			});
 		},
 
 		show: function() {
-			// fadeIn、fadeOut 操作的是 display 属性，不能跟 visibility 同时使用=
+			// fadeIn、fadeOut 操作的是 display 属性，不能跟 visibility 同时使用
 			this.$wrapper.fadeIn(this.settings.speed);
 		},
 

@@ -1,0 +1,27 @@
+{
+  "name": "side-catalog",
+  "version": "1.0.0",
+  "description": "百度百科右下角导航插件",
+  "main": "side-catalog.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dodoroy/side-catalog.git"
+  },
+  "keywords": [
+    "导航",
+    "jQuery",
+    "百度百科"
+  ],
+  "author": "Effy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dodoroy/side-catalog/issues"
+  },
+  "homepage": "https://github.com/dodoroy/side-catalog#readme",
+  "devDependencies": {
+    "uglify-js": "^3.4.0"
+  }
+}

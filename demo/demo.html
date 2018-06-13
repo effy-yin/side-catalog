@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1.0,user-scalable=no">
 <title>sideCatalog demo</title>
-<link rel="stylesheet" type="text/css" href="../side-toolbar.css">
-<link rel="stylesheet" type="text/css" href="../side-catalog.css">
+<link rel="stylesheet" type="text/css" href="../src/side-toolbar.css">
+<link rel="stylesheet" type="text/css" href="../src/side-catalog.css">
 <style type="text/css">
 
 * {
@@ -31,7 +31,7 @@ body {
 }
 .para {
     text-indent: 2em;
-    height: 150px;
+    height: 250px;
     margin-top: 10px;
 }
 .side-info {
@@ -76,25 +76,55 @@ body {
 </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="../side-toolbar.js"></script>
-<script type="text/javascript" src="../side-catalog.js"></script>
+<script type="text/javascript" src="../src/side-toolbar.js"></script>
+<script type="text/javascript" src="../src/side-catalog.js"></script>
 <script type="text/javascript">
 
     
     $('#sideToolbar').sideToolbar({width: 220, height: 320, showHeight: 300});
 
     //获取json数据并填充页面内容
-    $.ajax({
-        url: 'data.json'
-    }).done(function (json) {
-        var baikeViewInfo = eval(json);
+    // $.ajax({
+    //     url: 'data.json'
+    // }).done(function (json) {
+    //     var baikeViewInfo = eval(json);
 
-        //初始化页面内容显示
-        initContentView(baikeViewInfo);
+    //     //初始化页面内容显示
+    //     initContentView(baikeViewInfo);
 
-        $('#sideCatalog').sideCatalog({width: 200, height: 220, content: '#content'});
+    //     $('#sideCatalog').sideCatalog({width: 200, height: 220, content: '#content'});
 
-    });
+    // });
+
+    var baikeViewInfo ={
+    title:"北京烤鸭",
+    cataList:[]
+    };
+    baikeViewInfo.cataList = [
+        {"title":"历史缘由","level":1,"index":1,"content":"啦啦啦啦啦"},
+        {"title":"流派分类","level":1,"index":2,"content":"啦啦啦啦啦"},
+        {"title":"三大美味","level":1,"index":3,"content":"啦啦啦啦啦"},
+        {"title":"全聚德","level":2,"index":"3.1","content":"啦啦啦啦啦"},
+        {"title":"便宜坊","level":2,"index":"3.2","content":"啦啦啦啦啦"},
+        {"title":"大董","level":2,"index":"3.3","content":"啦啦啦啦啦"},
+        {"title":"吃法三则","level":1,"index":4,"content":"啦啦啦啦啦"},
+        {"title":"烹制方法","level":1,"index":5,"content":"啦啦啦啦啦"},
+        {"title":"传统做法","level":1,"index":6,"content":"啦啦啦啦啦"},
+        {"title":"选材","level":2,"index":"6.1","content":"啦啦啦啦啦"},
+        {"title":"烤制","level":2,"index":"6.2","content":"啦啦啦啦啦"},
+        {"title":"选材","level":2,"index":"6.3","content":"啦啦啦啦啦"},
+        {"title":"烤制","level":2,"index":"6.4","content":"啦啦啦啦啦"},
+        {"title":"选材","level":2,"index":"6.5","content":"啦啦啦啦啦"},
+        {"title":"烤制","level":2,"index":"6.6","content":"啦啦啦啦啦"},
+        {"title":"制作程序","level":1,"index":7,"content":"啦啦啦啦啦"},
+        {"title":"好吃","level":1,"index":8,"content":"啦啦啦啦啦"},
+        {"title":"很好吃","level":1,"index":9,"content":"啦啦啦啦啦"},
+        {"title":"特别好吃","level":1,"index":10,"content":"啦啦啦啦啦"}
+    ];
+    //初始化页面内容显示
+    initContentView(baikeViewInfo);
+
+    $('#sideCatalog').sideCatalog({width: 200, height: 260, content: '#content'});
 
 
     $(document).scroll(function() {
@@ -137,24 +167,6 @@ body {
     }
 
 
-/*var baikeViewInfo ={
-    title:"北京烤鸭",
-    cataList:[]
-};
-baikeViewInfo.cataList = [
-    {"title":"历史缘由","level":1,"index":1,"content":"啦啦啦啦啦"},
-    {"title":"流派分类","level":1,"index":2,"content":"啦啦啦啦啦"},
-    {"title":"三大美味","level":1,"index":3,"content":"啦啦啦啦啦"},
-    {"title":"全聚德","level":2,"index":"3_1","content":"啦啦啦啦啦"},
-    {"title":"便宜坊","level":2,"index":"3_2","content":"啦啦啦啦啦"},
-    {"title":"大董","level":2,"index":"3_3","content":"啦啦啦啦啦"},
-    {"title":"吃法三则","level":1,"index":4,"content":"啦啦啦啦啦"},
-    {"title":"烹制方法","level":1,"index":5,"content":"啦啦啦啦啦"},
-    {"title":"传统做法","level":1,"index":6,"content":"啦啦啦啦啦"},
-    {"title":"选材","level":2,"index":"6_1","content":"啦啦啦啦啦"},
-    {"title":"烤制","level":2,"index":"6_2","content":"啦啦啦啦啦"},
-    {"title":"制作程序","level":1,"index":7,"content":"啦啦啦啦啦"}
-];*/
 </script>
 </body>
 </html>
